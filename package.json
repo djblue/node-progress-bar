@@ -3,6 +3,12 @@
   "version": "0.0.0",
   "description": "Simple transfer progress bar.",
   "main": "index.js",
+  "keywords": [
+    "simple",
+    "progress",
+    "transfer",
+    "bar"
+  ],
   "dependencies": {
     "pretty-bytes": "^1.0.3"
   },
@@ -12,6 +18,17 @@
   "scripts": {
     "test": "node test"
   },
-  "author": "Abdullah Badahdah",
-  "license": "MIT"
+  "bugs": {
+    "url" : "https://github.com/djblue/node-transfer-bar/issues"
+  },
+  "author": {
+    "name" : "Abdullah Badahdah",
+    "email" : "a.s.badahdah@gmail.com",
+    "url" : "https://djblue.github.io/"
+  },
+  "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/djblue/node-transfer-bar.git"
+  }
 }
