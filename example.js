@@ -6,6 +6,8 @@ var interval = setInterval(function () {
     process.stderr.write('\n');
   } else {
     p.update(100000);
-    process.stderr.write(p.render() + ' \r');
+    process.stderr.clearLine();
+    process.stderr.cursorTo(0);
+    process.stderr.write(p.render());
   }
 }, 100)
