@@ -1,5 +1,7 @@
 # node-transfer-bar
 
+[![Build Status](https://travis-ci.org/djblue/node-transfer-bar.svg?branch=master)](https://travis-ci.org/djblue/node-transfer-bar)
+
 Basic progress bar focused on downloads and uploads; inspired by pacman
 (arch linux package manager) and
 [progress](https://www.npmjs.com/package/progress). This module is more
