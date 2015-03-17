@@ -79,11 +79,13 @@ function bar (doneChar, notDoneChar) {
 
 exports.bar = bar;
 
-function progress (total) {
+// a progress bar
+//   total - the total number counting up to
+function progress (total, opts) {
   var t = timer();
   var p = 0;
   var b = bar('#', '-');
-  var format = 'uploading :size :rate :time :bar :percent'
+  var format = 'uploading :pad :size :rate :time :bar :percent';
   return {
     update: function (bytes) {
       p += bytes;
@@ -101,7 +103,7 @@ function progress (total) {
       return p / total;
     },
     percent: function () {
-      return (this.rawPercent() * 100).toFixed(1) + '%';
+      return ('   ' + (this.rawPercent() * 100).toFixed(1) + '%').slice(-6);
     },
     time: function () {
       var tick = t();
@@ -119,15 +121,42 @@ function progress (total) {
     rate: function () {
       return pretty(this.rawRate()) + '/s';
     },
-    render: function () {
-      return format.split(' ').map(function (item) {
-        if (item[0] === ':') {
-          var func = item.slice(1);
-          return this[func]();
-        } else {
-          return item;
+    // w - width of output (default to 79)
+    // why 79? because most terminals default to 80 chars, and 79 is 1
+    // less to keep any clearLine functions working.
+    render: function (w) {
+
+      if (w === undefined) {
+        w = 79;
+      }
+
+      var pad = [];
+      var s = format.split(' ');
+
+      for (var i = 0; i < s.length; i++) {
+        if (s[i][0] === ':') {
+          var func = s[i].slice(1);
+          if (func === 'pad') {
+            pad.push(i);
+            s[i] = '';
+          } else {
+            s[i] = this[func]();
+          }
         }
-      }.bind(this)).join(' ');
+      }
+
+      // apply padding until the width w is reached, can only occur if
+      // :pad tag is in format string, otherwise skipped.
+      var j = 0;
+      if (pad.length > 0) {
+        while (s.join(' ').length < w) {
+          s[pad[j]] += ' ';
+          // apply padding to each :pad tag evenly
+          j = (j + 1) % pad.length;
+        }
+      }
+
+      return s.join(' ');
     }
   };
 }
