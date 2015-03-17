@@ -8,12 +8,25 @@ test('.repeat()', function (t) {
   t.end();
 });
 
+test('.fixed()', function (t) {
+  var fixed = index.fixed(' ', 3);
+  t.equal(fixed(''), '   ', 'empty string');
+  t.equal(fixed('*'), '  *', 'single char');
+  t.equal(fixed('***'), '***', 'full string');
+  t.throws(function () {
+    return fixed('****');
+  }, /str has more chars than \d+/, 'too full string');
+  t.end();
+});
+
 test('.pad()', function (t) {
   var pad = index.pad;
   t.equal(pad(0,  2), '00');
   t.equal(pad(1,  2), '01');
   t.equal(pad(10, 2), '10');
-  t.throws(function () { pad(100, 2); }, /\d+ has more digits than \d+/, '10');
+  t.throws(function () {
+    pad(100, 2);
+  }, /\d+ has more digits than \d+/, '10');
   t.end();
 });
 

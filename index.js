@@ -51,6 +51,19 @@ function pad (i, n) {
 
 exports.pad = pad;
 
+function fixed (fill, width) {
+  var pad = repeat(fill)(width);
+  return function (str) {
+    if (str.length > width) {
+      throw Error('str has more chars than ' + width);
+    } else {
+      return pad.concat(str).slice(-1*width);
+    }
+  };
+}
+
+exports.fixed = fixed;
+
 // return function to render a progress bar
 //   doneChar - character for completed progress
 //   notDoneChar - character for not completed progress
@@ -103,7 +116,8 @@ function progress (total, opts) {
       return p / total;
     },
     percent: function () {
-      return ('   ' + (this.rawPercent() * 100).toFixed(1) + '%').slice(-6);
+      var f = fixed(' ', 6);
+      return f((this.rawPercent() * 100).toFixed(1) + '%');
     },
     time: function () {
       var tick = t();
@@ -119,7 +133,8 @@ function progress (total, opts) {
       return p / t();
     },
     rate: function () {
-      return pretty(this.rawRate()) + '/s';
+      var f = fixed(' ', 10);
+      return f(pretty(this.rawRate()) + '/s');
     },
     // w - width of output (default to 79)
     // why 79? because most terminals default to 80 chars, and 79 is 1
