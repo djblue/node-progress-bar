@@ -1,8 +1,8 @@
 var util = require('./util');
 
-// a progress bar
+// a transfer progress bar
 //   total - the total number counting up to
-function progress (total, opts) {
+function transfer (total, opts) {
   var t = util.timer();
   var p = 0;
   var b = util.bar('#', '-');
@@ -91,4 +91,4 @@ function progress (total, opts) {
   };
 }
 
-module.exports = progress;
+module.exports = transfer;

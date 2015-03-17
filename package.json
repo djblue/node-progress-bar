@@ -1,7 +1,7 @@
 {
-  "name": "progress-bar",
+  "name": "transfer-bar",
   "version": "0.0.0",
-  "description": "Simple progress bar.",
+  "description": "Simple transfer progress bar.",
   "main": "index.js",
   "dependencies": {
     "pretty-bytes": "^1.0.3"

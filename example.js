@@ -1,10 +1,10 @@
-var progress = require('./');
-var p = progress(1000000);
+var transfer = require('./');
+var b = transfer(1000000);
 
 var interval = setInterval(function () {
-  if (p.done()) {
+  if (b.done()) {
     clearInterval(interval);
   } else {
-    p.update(10000);
+    b.update(10000);
   }
-}, 100);
+}, 10);

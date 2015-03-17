@@ -50,27 +50,3 @@ test('util.timer()', function (t) {
   }, 1000);
 });
 
-/*
-test('.progress()', function (t) {
-  var p = util.progress(1024);
-  setTimeout(function () {
-    p.update(512);
-    t.equal(p.time(), '00:00:01', 'time');
-  }, 1000);
-  setTimeout(function () {
-    p.update(512);
-    t.equal(p.rawRate() < 768, true, 'rate after 1.5 sec');
-    t.equal(p.rawPercent(), 1, 'should be complete');
-    t.end();
-  }, 1500);
-});
-
-test('.render()', function (t) {
-  var p = util.progress(10000000);
-  setTimeout(function () {
-    p.update(1000000);
-    console.log(p.render());
-    t.end();
-  }, 10)
-});
-*/
