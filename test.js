@@ -1,15 +1,15 @@
-var test = require("tape").test;
-var index = require('./');
+var test = require("tape");
+var util = require('./util');
 
-test('.repeat()', function (t) {
-  var repeat = index.repeat('*');
+test('util.repeat()', function (t) {
+  var repeat = util.repeat('*');
   t.equal(repeat(3), '***', 'should reapeat 3 times');
   t.equal(repeat(5), '*****', 'should reapeat 5 times');
   t.end();
 });
 
-test('.fixed()', function (t) {
-  var fixed = index.fixed(' ', 3);
+test('util.fixed()', function (t) {
+  var fixed = util.fixed(' ', 3);
   t.equal(fixed(''), '   ', 'empty string');
   t.equal(fixed('*'), '  *', 'single char');
   t.equal(fixed('***'), '***', 'full string');
@@ -19,8 +19,8 @@ test('.fixed()', function (t) {
   t.end();
 });
 
-test('.pad()', function (t) {
-  var pad = index.pad;
+test('util.pad()', function (t) {
+  var pad = util.pad;
   t.equal(pad(0,  2), '00');
   t.equal(pad(1,  2), '01');
   t.equal(pad(10, 2), '10');
@@ -30,8 +30,8 @@ test('.pad()', function (t) {
   t.end();
 });
 
-test('.bar()', function (t) {
-  var bar = index.bar('#', '-');
+test('util.bar()', function (t) {
+  var bar = util.bar('#', '-');
   t.equal(bar(10, 0.25), '[##------]', 'should render 25%');
   t.equal(bar(10, 0.50), '[####----]', 'should render 50%');
   t.equal(bar(10, 0.75), '[######--]', 'should render 75%');
@@ -39,8 +39,8 @@ test('.bar()', function (t) {
   t.end();
 });
 
-test('.timer()', function (t) {
-  var timer = index.timer();
+test('util.timer()', function (t) {
+  var timer = util.timer();
   setTimeout(function () {
     t.equal(timer() > 0, true, 'timer should round to 0');
   }, 100);
@@ -50,8 +50,9 @@ test('.timer()', function (t) {
   }, 1000);
 });
 
+/*
 test('.progress()', function (t) {
-  var p = index.progress(1024);
+  var p = util.progress(1024);
   setTimeout(function () {
     p.update(512);
     t.equal(p.time(), '00:00:01', 'time');
@@ -65,10 +66,11 @@ test('.progress()', function (t) {
 });
 
 test('.render()', function (t) {
-  var p = index.progress(10000000);
+  var p = util.progress(10000000);
   setTimeout(function () {
     p.update(1000000);
     console.log(p.render());
     t.end();
   }, 10)
 });
+*/

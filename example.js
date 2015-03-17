@@ -1,12 +1,10 @@
-var p = require('./').progress(10000000);
-
+var progress = require('./');
+var p = progress(1000000);
 
 var interval = setInterval(function () {
   if (p.done()) {
     clearInterval(interval);
-    process.stderr.write('\n');
   } else {
-    p.update(100000);
-    p.flush();
+    p.update(10000);
   }
-}, 100)
+}, 100);
