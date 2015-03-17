@@ -6,10 +6,7 @@ var interval = setInterval(function () {
     clearInterval(interval);
     process.stderr.write('\n');
   } else {
-    var cols = process.stdout.columns - 1;
     p.update(100000);
-    process.stderr.clearLine();
-    process.stderr.cursorTo(0);
-    process.stderr.write(p.render(cols));
+    p.flush();
   }
 }, 100)

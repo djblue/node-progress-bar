@@ -103,6 +103,12 @@ function progress (total, opts) {
     update: function (bytes) {
       p += bytes;
     },
+    flush: function () {
+      var cols = process.stdout.columns - 1;
+      process.stderr.clearLine();
+      process.stderr.cursorTo(0);
+      process.stderr.write(this.render(cols));
+    },
     done: function () {
       return p >= total;
     },
