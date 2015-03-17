@@ -1,0 +1,17 @@
+{
+  "name": "progress-bar",
+  "version": "0.0.0",
+  "description": "Simple progress bar.",
+  "main": "index.js",
+  "dependencies": {
+    "pretty-bytes": "^1.0.3"
+  },
+  "devDependencies": {
+    "tape": "^3.5.0"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "Abdullah Badahdah",
+  "license": "MIT"
+}
